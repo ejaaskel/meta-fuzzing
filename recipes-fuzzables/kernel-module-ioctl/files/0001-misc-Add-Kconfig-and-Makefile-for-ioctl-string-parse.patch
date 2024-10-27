@@ -1,0 +1,41 @@
+From d76cbff35544b94d2f752535384f6a9229b79a9a Mon Sep 17 00:00:00 2001
+From: ejaaskel <esa.jaaskela@suomi24.fi>
+Date: Thu, 17 Oct 2024 17:24:26 +0000
+Subject: [PATCH] misc: Add Kconfig and Makefile for ioctl string parse
+
+Upstream-Status: Inappropriate [Not applicable for upsteam]
+
+---
+ drivers/misc/Kconfig  | 6 ++++++
+ drivers/misc/Makefile | 1 +
+ 2 files changed, 7 insertions(+)
+
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index cadd4a820c03..cc5c445f326a 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -562,6 +562,12 @@ config TPS6594_PFSM
+ 	  This driver can also be built as a module.  If so, the module
+ 	  will be called tps6594-pfsm.
+ 
++config IOCTL_STRING_PARSE
++	tristate "IOCTL String Parsing fuzz module"
++	default n
++	help
++	  Module that creates a character device that can be used to demonstrate fuzzing.
++
+ source "drivers/misc/c2port/Kconfig"
+ source "drivers/misc/eeprom/Kconfig"
+ source "drivers/misc/cb710/Kconfig"
+diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+index f2a4d1ff65d4..64f282f7fd57 100644
+--- a/drivers/misc/Makefile
++++ b/drivers/misc/Makefile
+@@ -67,3 +67,4 @@ obj-$(CONFIG_TMR_MANAGER)      += xilinx_tmr_manager.o
+ obj-$(CONFIG_TMR_INJECT)	+= xilinx_tmr_inject.o
+ obj-$(CONFIG_TPS6594_ESM)	+= tps6594-esm.o
+ obj-$(CONFIG_TPS6594_PFSM)	+= tps6594-pfsm.o
++obj-$(CONFIG_IOCTL_STRING_PARSE)	+= ioctl_string_parse.o
+-- 
+2.34.1
+
